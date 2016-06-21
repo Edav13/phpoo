@@ -1,39 +1,19 @@
-<?php
-    class Vehiculo{
-        public $motor = false;
-        public $marca;
-        public $color;
+<?php  
+    class Pagina{
+        public $nombre = "Codigo Facilito";
+        public static $url = "www.codigofacilito.com";
 
-        protected function estado(){
-            if ($this->motor) {
-                echo "El motor esta encendido <br>";
-            }else{
-                echo "El motor esta apagado <br>";
-            }
+        public function bienvenida(){
+            echo "Bienvendios a <b>".$this->nombre."</b> la pagina es <b>".self::$url."</b>";
         }
-        public function encender(){
-            if ($this->motor) {
-                echo "Cuidado, el motor ya esta prendido. <br>";
-            }else{
-                echo "El motor ahora esta encendido.<br>";
-                $this->motor = true;
-            }
+        public function bienvenida2(){
+            echo "<br>Bienvenidos ".self::$url;
         }
     }
-    class Moto extends Vehiculo{
-        public function estadoMoto(){
-            self::estado();
-        }
-    }
-    class CuatriMoto extends Moto{
+    class Web extends Pagina{
 
     }
-    /*$vehiculo = new Vehiculo();
-    $vehiculo->estado();
-    $vehiculo->encender();
-    $vehiculo->estado();*/
-    $moto = new Moto();
-    $moto->estadoMoto();
-    $moto1 = new CuatriMoto();
-    $moto1->estadoMoto();
+    $pagina = new Pagina();
+    $pagina->bienvenida();
+    Web::bienvenida2();
 ?>
