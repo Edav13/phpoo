@@ -1,27 +1,16 @@
 <?php 
-    trait Persona1{
-        public $nombre;
-        public function mostrarNombre(){
-            echo $this->nombre;
+    //require_once "api/Models/Persona.php";
+    //require_once "api/controllers/PersonasController.php";
+    spl_autoload_register(function($clase){
+        $ruta = "api/".str_replace("\\","/",$clase).".php";
+        if(is_readable($ruta)){
+            require_once $ruta;
+        }else{
+            echo "El archivo no existe.";
         }
-        abstract function asignarNombre($nombre);
-    }
-    trait Trabajador{
-        protected function mensaje(){
-            echo " y Soy un trabajador.";
-        }
-    }
-
-    class Persona{
-        use Persona1, Trabajador;
-
-        public function asignarNombre($nombre){
-            $this->nombre = $nombre;
-            $this->mostrarNombre();
-            self::mensaje();
-        }
-    }
-    $persona = new Persona();
-    $persona->asignarNombre("Carlos");
+    });
+    Models\Persona::Hola();
+    echo "<br>";
+    controllers\PersonasController::Hola();
     
 ?>
