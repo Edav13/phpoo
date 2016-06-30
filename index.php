@@ -1,16 +1,8 @@
-<?php 
-    //require_once "api/Models/Persona.php";
-    //require_once "api/controllers/PersonasController.php";
-    spl_autoload_register(function($clase){
-        $ruta = "api/".str_replace("\\","/",$clase).".php";
-        if(is_readable($ruta)){
-            require_once $ruta;
-        }else{
-            echo "El archivo no existe.";
-        }
-    });
-    Models\Persona::Hola();
-    echo "<br>";
-    controllers\PersonasController::Hola();
-    
+<?php
+    require_once "Config/Autoload.php";
+    Config\Autoload::run();
+    $est = new Models\Estudiante();
+    $est->set('id', 1);
+    $datos = $est->view();
+    echo $datos['NOMBRE'];
 ?>
