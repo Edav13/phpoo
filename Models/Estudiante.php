@@ -33,11 +33,11 @@
 			$this->conexion->concultaSimple($sql);
 		}
 		public function edit(){
-			$sql = "UPDATE FROM estudiantes SET NOMBRE = '{$this->nombre}', EDAD = '{$this->edad}', PROMEDIO = '{$this->promedio}', ID_SECCION = '{$this->id_seccion}' WHERE ID = '{$this->id}'";
+			$sql = "UPDATE estudiantes SET NOMBRE = '{$this->nombre}', EDAD = '{$this->edad}', PROMEDIO = '{$this->promedio}', ID_SECCION = '{$this->id_seccion}' WHERE ID = '{$this->id}'";
 			$this->conexion->consultaSimple($sql);
 		}
 		public function view(){
-			$sql = "SELECT t1.NOMBRE FROM estudiantes t1 INNER JOIN secciones t2 ON t1.ID_SECCION = t2.ID WHERE t1.ID = '{$this->id}'";
+			$sql = "SELECT t1.*, t2.NOMBRE as nombre_seccion FROM estudiantes t1 INNER JOIN secciones t2 ON t1.ID_SECCION = t2.ID WHERE t1.ID = '{$this->id}'";
 			$datos = $this->conexion->consultaRetorno($sql);
 			$row = mysqli_fetch_assoc($datos);
 			return $row;
